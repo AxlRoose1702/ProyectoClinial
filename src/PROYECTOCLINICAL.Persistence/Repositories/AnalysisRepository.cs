@@ -54,5 +54,21 @@ namespace PROYECTOCLINICAL.Persistence.Repositories
 
             return recordsAffected > 0;
         }
+
+        public async Task<bool> AnalysisEdit(Analysis analysis)
+        {
+            using var connection = _context.CreateConnection;
+
+            var query = "uspAnalysisEdit";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("AnalysisId", analysis.AnalysisId);
+            parameters.Add("Name", analysis.Name);
+
+            var recordsAffected = await connection
+                .ExecuteAsync(query, param: parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+            return recordsAffected > 0;
+        }
     }
 }

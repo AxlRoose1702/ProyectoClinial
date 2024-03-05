@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PROYECTOCLINICAL.Application.Dtos.Analysis.Response;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateCommand;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateCommand;
 using PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.UseCase.Mappings
@@ -17,6 +18,8 @@ namespace PROYECTOCLINICAL.Application.UseCase.Mappings
                 .ReverseMap();
 
             CreateMap<CreateAnalysisCommand, Analysis>();
+
+            CreateMap<UpdateAnalysisCommand, Analysis>();
         }
     }
 }

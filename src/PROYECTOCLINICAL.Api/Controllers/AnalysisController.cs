@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateCommand;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetAllQuery;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetByIdQuery;
 
@@ -34,6 +35,14 @@ namespace PROYECTOCLINICAL.Api.Controllers
 
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAnalysi([FromBody] CreateAnalysisCommand command)
+        {
+            var response = await _mediator.Send(command);
+
+            return Ok(response);
+        }
+
+        [HttpPut("Edit")]
+        public async Task<IActionResult> EditAnalysis([FromBody] UpdateAnalysisCommand command)
         {
             var response = await _mediator.Send(command);
 
