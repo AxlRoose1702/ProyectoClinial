@@ -1,5 +1,6 @@
 using PROYECTOCLINICAL.Persistence.Extensions;
 using PROYECTOCLINICAL.Application.UseCase.Extensions;
+using PROYECTOCLINICAL.Api.Extensions.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.AddMiddleware();
 
 app.MapControllers();
 
