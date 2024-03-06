@@ -1,9 +1,4 @@
 ﻿using PROYECTOCLINICAL.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PROYECTOCLINICAL.Application.Interface
 {
@@ -15,5 +10,6 @@ namespace PROYECTOCLINICAL.Application.Interface
         Task<bool> AnalysisRegister(Analysis analysis);
 
         Task<bool> AnalysisEdit(Analysis analysis);
+        Task<bool> AnalysisRemove(int analysisId);
     }
 }

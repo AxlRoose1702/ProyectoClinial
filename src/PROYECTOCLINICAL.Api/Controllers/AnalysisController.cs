@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateCommand;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.DeleteCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetAllQuery;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetByIdQuery;
@@ -46,6 +47,13 @@ namespace PROYECTOCLINICAL.Api.Controllers
         {
             var response = await _mediator.Send(command);
 
+            return Ok(response);
+        }
+
+        [HttpDelete("Remove/{analysisId:int}")]
+        public async Task<IActionResult> RemoveAnalysis(int analysisId)
+        {
+            var response = await _mediator.Send(new DeleteAnalysisCommand() { AnalysisId = analysisId });
             return Ok(response);
         }
     }
