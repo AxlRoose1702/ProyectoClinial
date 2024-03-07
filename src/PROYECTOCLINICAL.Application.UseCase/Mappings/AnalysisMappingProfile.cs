@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PROYECTOCLINICAL.Application.Dtos.Analysis.Response;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.ChangeStateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateCommand;
 using PROYECTOCLINICAL.Domain.Entities;
@@ -20,6 +21,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.Mappings
             CreateMap<CreateAnalysisCommand, Analysis>();
 
             CreateMap<UpdateAnalysisCommand, Analysis>();
+            CreateMap<ChangeStateAnalysisCommand, Analysis>();
         }
     }
 }

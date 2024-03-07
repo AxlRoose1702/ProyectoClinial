@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.ChangeStateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.DeleteCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateCommand;
@@ -47,6 +48,13 @@ namespace PROYECTOCLINICAL.Api.Controllers
         {
             var response = await _mediator.Send(command);
 
+            return Ok(response);
+        }
+        
+        [HttpPut("ChangeState")]
+        public async Task<IActionResult> ChangeState([FromBody] ChangeStateAnalysisCommand command)
+        {
+            var response = await _mediator.Send(command);
             return Ok(response);
         }
 
