@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using PROYECTOCLINICAL.Application.Interface;
+using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 using Entity = PROYECTOCLINICAL.Domain.Entities;
 
@@ -8,12 +8,14 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateC
 {
     public class CreateAnalysisHandler : IRequestHandler<CreateAnalysisCommand, BaseResponse<bool>>
     {
-        private readonly IAnalysisRepository _analysisRepository;
+        //private readonly IAnalysisRepository _analysisRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public CreateAnalysisHandler(IAnalysisRepository analysisRepository, IMapper mapper)
+        public CreateAnalysisHandler( IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _analysisRepository = analysisRepository;
+            //_analysisRepository = analysisRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<BaseResponse<bool>> Handle(CreateAnalysisCommand request, CancellationToken cancellationToken)
@@ -23,7 +25,9 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateC
             try
             {
                 var analysis = _mapper.Map<Entity.Analysis>(request);
-                response.Data = await _analysisRepository.AnalysisRegister(analysis);
+                var parameter = new { analysis.Name };
+
+                response.Data = await _unitOfWork.Analysis.ExecAsync("uspAnalysisRegister", parameter);
 
                 if (response.Data)
                 {

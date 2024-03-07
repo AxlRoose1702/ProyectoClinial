@@ -1,16 +1,18 @@
 ﻿using MediatR;
-using PROYECTOCLINICAL.Application.Interface;
+using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.DeleteCommand
 {
     public class DeleteAnalysisHandler : IRequestHandler<DeleteAnalysisCommand, BaseResponse<bool>>
     {
-        private readonly IAnalysisRepository _analysisRepository;
+        //private readonly IAnalysisRepository _analysisRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteAnalysisHandler(IAnalysisRepository analysisRepository)
+        public DeleteAnalysisHandler(IUnitOfWork unitOfWork)
         {
-            _analysisRepository = analysisRepository;
+            //_analysisRepository = analysisRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<BaseResponse<bool>> Handle(DeleteAnalysisCommand request, CancellationToken cancellationToken)
@@ -19,7 +21,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.DeleteC
 
             try
             {
-                response.Data = await _analysisRepository.AnalysisRemove(request.AnalysisId);
+                response.Data = await _unitOfWork.Analysis.ExecAsync("uspAnalysisRemove", new { request.AnalysisId });
 
                 if (response.Data)
                 {

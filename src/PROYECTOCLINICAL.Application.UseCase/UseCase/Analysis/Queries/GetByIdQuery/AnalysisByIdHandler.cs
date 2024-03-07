@@ -1,19 +1,20 @@
 ﻿using AutoMapper;
 using MediatR;
 using PROYECTOCLINICAL.Application.Dtos.Analysis.Response;
-using PROYECTOCLINICAL.Application.Interface;
+using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetByIdQuery
 {
     public class AnalysisByIdHandler : IRequestHandler<GetAnalysisByIdQuery, BaseResponse<GetAnalysisByIdResponseDto>>
     {
-        private readonly IAnalysisRepository _analysisRepository;
+        //private readonly IAnalysisRepository _analysisRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public AnalysisByIdHandler(IAnalysisRepository analysisRepository, IMapper mapper)
+        public AnalysisByIdHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _analysisRepository = analysisRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
         public async Task<BaseResponse<GetAnalysisByIdResponseDto>> Handle(GetAnalysisByIdQuery request, CancellationToken cancellationToken)
@@ -22,7 +23,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetByIdQ
 
             try
             {
-                var analysis = await _analysisRepository.AnalysisById(request.AnalysisId);
+                var analysis = await _unitOfWork.Analysis.GetByIdAsync("uspAnalysisById", new {request.AnalysisId});
 
                 if (analysis is null) 
                 {

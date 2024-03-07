@@ -1,19 +1,20 @@
 ﻿using AutoMapper;
 using MediatR;
 using PROYECTOCLINICAL.Application.Dtos.Analysis.Response;
-using PROYECTOCLINICAL.Application.Interface;
+using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetAllQuery
 {
     public class GetAllAnalysisHandler : IRequestHandler<GetAllAnalysisQuery, BaseResponse<IEnumerable<GetAllAnalysisResponseDto>>>
     {
-        private readonly IAnalysisRepository _analysisRepository;
+        //private readonly IAnalysisRepository _analysisRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetAllAnalysisHandler(IAnalysisRepository analysisRepository, IMapper mapper)
+        public GetAllAnalysisHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _analysisRepository = analysisRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
         public async Task<BaseResponse<IEnumerable<GetAllAnalysisResponseDto>>> Handle(GetAllAnalysisQuery request, CancellationToken cancellationToken)
@@ -22,7 +23,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetAllQu
 
             try
             {
-                var analysis = await _analysisRepository.ListAnalysis();
+                var analysis = await _unitOfWork.Analysis.GetAllAsync("uspAnalysisList");
                 if (analysis is not null)
                 {
                     response.IsSuccess = true;

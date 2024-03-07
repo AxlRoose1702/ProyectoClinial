@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using PROYECTOCLINICAL.Application.Interface;
+using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 using Entity = PROYECTOCLINICAL.Domain.Entities;
 
@@ -8,13 +8,15 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateC
 {
     public class UpdateAnalysisHandler : IRequestHandler<UpdateAnalysisCommand, BaseResponse<bool>>
     {
-        private readonly IAnalysisRepository _analysisRepository;
+        //private readonly IAnalysisRepository _analysisRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UpdateAnalysisHandler(IAnalysisRepository analysisRepository, IMapper mapper)
+        public UpdateAnalysisHandler(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _analysisRepository = analysisRepository;
+            //_analysisRepository = analysisRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
         public async Task<BaseResponse<bool>> Handle(UpdateAnalysisCommand request, CancellationToken cancellationToken)
         {
@@ -23,8 +25,9 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateC
             try
             {
                 var analysis = _mapper.Map<Entity.Analysis>(request);
+                var parameters = new { analysis.AnalysisId, analysis.Name };
 
-                response.Data = await _analysisRepository.AnalysisEdit(analysis);
+                response.Data = await _unitOfWork.Analysis.ExecAsync("uspAnalysisEdit", parameters);
 
                 if (response.Data) {
                     response.IsSuccess = true;
