@@ -1,5 +1,6 @@
 ﻿using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Exceptions;
+using PROYECTOCLINICAL.Utilities.Constants;
 using System.Text.Json;
 
 namespace PROYECTOCLINICAL.Api.Extensions.Middleware
@@ -24,7 +25,7 @@ namespace PROYECTOCLINICAL.Api.Extensions.Middleware
                 context.Response.ContentType = "application/json";
                 await JsonSerializer.SerializeAsync(context.Response.Body, new BaseResponse<object>
                 {
-                    Message = "Errores de validacion",
+                    Message = GlobalMessage.MESSAGE_VALIDATE,
                     Errors = ex.Errors
                 });
             }

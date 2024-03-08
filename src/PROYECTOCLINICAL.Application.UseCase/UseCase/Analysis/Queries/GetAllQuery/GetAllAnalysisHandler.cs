@@ -29,7 +29,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetAllQu
                 {
                     response.IsSuccess = true;
                     response.Data = _mapper.Map<IEnumerable<GetAllAnalysisResponseDto>>(analysis);
-                    response.Message = "Consulta Exitosa!";
+                    response.Message = GlobalMessage.MESSAGE_QUERY;
                 }
             }
             catch (Exception ex)

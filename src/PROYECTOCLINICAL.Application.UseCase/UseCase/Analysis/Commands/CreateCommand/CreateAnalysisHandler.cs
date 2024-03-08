@@ -34,7 +34,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateC
                 if (response.Data)
                 {
                     response.IsSuccess = true;
-                    response.Message = "Se registro correctamente";
+                    response.Message = GlobalMessage.MESSAGE_SAVE;
                 }
             }
             catch (Exception ex)

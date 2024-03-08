@@ -17,5 +17,9 @@ namespace PROYECTOCLINICAL.Utilities.Constants
         public const string uspAnalysisChangeState = "uspAnalysisChangeState";
         #endregion
 
+        #region uspExams
+        public const string uspExamList = "uspExamList";
+        #endregion
+
     }
 }

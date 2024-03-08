@@ -31,7 +31,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.ChangeS
                 if (response.Data)
                 {
                     response.IsSuccess = true;
-                    response.Message = "Se ha actualizado correctamente";
+                    response.Message = GlobalMessage.MESSAGE_UPDATE_STATE;
                 }
             }
             catch (Exception ex){

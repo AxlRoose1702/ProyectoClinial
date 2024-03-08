@@ -33,7 +33,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateC
 
                 if (response.Data) {
                     response.IsSuccess = true;
-                    response.Message = "Se ha actualizado correctamente";
+                    response.Message = GlobalMessage.MESSAGE_UPDATE;
                 }
             }
             catch (Exception ex)

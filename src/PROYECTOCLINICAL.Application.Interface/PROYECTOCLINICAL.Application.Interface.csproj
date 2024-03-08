@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PROYECTOCLINICAL.Application\PROYECTOCLINICAL.Application.Dtos.csproj" />
     <ProjectReference Include="..\PROYECTOCLINICAL.Domain\PROYECTOCLINICAL.Domain.csproj" />
   </ItemGroup>
 

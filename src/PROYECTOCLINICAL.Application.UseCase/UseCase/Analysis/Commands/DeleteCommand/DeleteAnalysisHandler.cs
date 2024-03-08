@@ -27,7 +27,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.DeleteC
                 if (response.Data)
                 {
                     response.IsSuccess = true;
-                    response.Message = "Se ha eliminado correctamente.";
+                    response.Message = GlobalMessage.MESSAGE_DELETE;
                 }
             } catch (Exception ex)
             {
