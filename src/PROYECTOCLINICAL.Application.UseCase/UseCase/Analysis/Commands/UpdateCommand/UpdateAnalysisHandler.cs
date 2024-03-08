@@ -2,6 +2,8 @@
 using MediatR;
 using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
+using PROYECTOCLINICAL.Utilities.Constants;
+using PROYECTOCLINICAL.Utilities.HelperExtensions;
 using Entity = PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateCommand
@@ -25,9 +27,9 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.UpdateC
             try
             {
                 var analysis = _mapper.Map<Entity.Analysis>(request);
-                var parameters = new { analysis.AnalysisId, analysis.Name };
+                var parameters = analysis.GetPropertiesWithValues();
 
-                response.Data = await _unitOfWork.Analysis.ExecAsync("uspAnalysisEdit", parameters);
+                response.Data = await _unitOfWork.Analysis.ExecAsync(StoreProcedures.uspAnalysisEdit, parameters);
 
                 if (response.Data) {
                     response.IsSuccess = true;

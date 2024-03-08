@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
+using PROYECTOCLINICAL.Utilities.Constants;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.DeleteCommand
 {
@@ -21,7 +22,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.DeleteC
 
             try
             {
-                response.Data = await _unitOfWork.Analysis.ExecAsync("uspAnalysisRemove", new { request.AnalysisId });
+                response.Data = await _unitOfWork.Analysis.ExecAsync(StoreProcedures.uspAnalysisRemove, request);
 
                 if (response.Data)
                 {

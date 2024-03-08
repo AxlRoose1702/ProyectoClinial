@@ -3,6 +3,7 @@ using MediatR;
 using PROYECTOCLINICAL.Application.Dtos.Analysis.Response;
 using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
+using PROYECTOCLINICAL.Utilities.Constants;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetByIdQuery
 {
@@ -23,7 +24,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Queries.GetByIdQ
 
             try
             {
-                var analysis = await _unitOfWork.Analysis.GetByIdAsync("uspAnalysisById", new {request.AnalysisId});
+                var analysis = await _unitOfWork.Analysis.GetByIdAsync(StoreProcedures.uspAnalysisById, request);
 
                 if (analysis is null) 
                 {

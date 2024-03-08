@@ -2,6 +2,8 @@
 using MediatR;
 using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
+using PROYECTOCLINICAL.Utilities.Constants;
+using PROYECTOCLINICAL.Utilities.HelperExtensions;
 using Entity = PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.ChangeStateCommand
@@ -23,8 +25,8 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.ChangeS
 
             try { 
                 var analysis = _mapper.Map<Entity.Analysis>(request);
-                var parameter = new {analysis.AnalysisId, analysis.State};
-                response.Data = await _unitOfWork.Analysis.ExecAsync("uspAnalysisChangeState", parameter);
+                var parameter = analysis.GetPropertiesWithValues();
+                response.Data = await _unitOfWork.Analysis.ExecAsync(StoreProcedures.uspAnalysisChangeState, parameter);
 
                 if (response.Data)
                 {

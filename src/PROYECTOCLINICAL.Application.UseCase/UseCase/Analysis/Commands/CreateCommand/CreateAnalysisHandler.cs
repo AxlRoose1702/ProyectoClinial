@@ -2,6 +2,8 @@
 using MediatR;
 using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
+using PROYECTOCLINICAL.Utilities.Constants;
+using PROYECTOCLINICAL.Utilities.HelperExtensions;
 using Entity = PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateCommand
@@ -25,9 +27,9 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Analysis.Commands.CreateC
             try
             {
                 var analysis = _mapper.Map<Entity.Analysis>(request);
-                var parameter = new { analysis.Name };
+                var parameter = analysis.GetPropertiesWithValues() ;
 
-                response.Data = await _unitOfWork.Analysis.ExecAsync("uspAnalysisRegister", parameter);
+                response.Data = await _unitOfWork.Analysis.ExecAsync(StoreProcedures.uspAnalysisRegister, parameter);
 
                 if (response.Data)
                 {
