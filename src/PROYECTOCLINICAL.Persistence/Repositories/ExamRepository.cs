@@ -1,16 +1,17 @@
 ﻿using Dapper;
 using PROYECTOCLINICAL.Application.Dtos.Exam.Response;
 using PROYECTOCLINICAL.Application.Interface.Interface;
+using PROYECTOCLINICAL.Domain.Entities;
 using PROYECTOCLINICAL.Persistence.Context;
 using System.Data;
 
 namespace PROYECTOCLINICAL.Persistence.Repositories
 {
-    public class ExamRepository : IExamRepository
+    public class ExamRepository : GenericRepository<Exam>, IExamRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public ExamRepository(ApplicationDbContext context)
+        public ExamRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }

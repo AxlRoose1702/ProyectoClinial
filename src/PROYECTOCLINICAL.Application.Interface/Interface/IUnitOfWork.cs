@@ -5,6 +5,6 @@ namespace PROYECTOCLINICAL.Application.Interface.Interface
     public interface IUnitOfWork : IDisposable
     {
         IGenericRepository<Analysis> Analysis { get; }
-        IGenericRepository<Exam> Exam { get; }
+        IExamRepository Exam { get; }
     }
 }
