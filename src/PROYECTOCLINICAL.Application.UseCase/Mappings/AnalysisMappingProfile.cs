@@ -22,6 +22,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.Mappings
 
             CreateMap<UpdateAnalysisCommand, Analysis>();
             CreateMap<ChangeStateAnalysisCommand, Analysis>();
+
         }
     }
 }

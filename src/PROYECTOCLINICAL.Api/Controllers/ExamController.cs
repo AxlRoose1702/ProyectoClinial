@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.GetAllQuery;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Queries.GetAllQuery;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Queries.GetByIdQuery;
 
 namespace PROYECTOCLINICAL.Api.Controllers
 {
@@ -19,6 +21,13 @@ namespace PROYECTOCLINICAL.Api.Controllers
         public async Task<IActionResult> ListExams() 
         {
             var response = await _mediator.Send(new GetAllExamQuery());
+            return Ok(response);
+        }
+
+        [HttpGet("{examId:int}")]
+        public async Task<IActionResult> ExamById(int examId)
+        {
+            var response = await _mediator.Send(new GetExamByIdQuery() { ExamId = examId });
             return Ok(response);
         }
     }

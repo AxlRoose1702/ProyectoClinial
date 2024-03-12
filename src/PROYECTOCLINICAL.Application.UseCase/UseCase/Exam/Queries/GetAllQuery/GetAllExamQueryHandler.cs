@@ -4,7 +4,7 @@ using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 using PROYECTOCLINICAL.Utilities.Constants;
 
-namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.GetAllQuery
+namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Queries.GetAllQuery
 {
     public class GetAllExamQueryHandler : IRequestHandler<GetAllExamQuery, BaseResponse<IEnumerable<GetAllExamResponseDto>>>
     {
@@ -23,14 +23,14 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.GetAllQuery
             {
                 var exams = await _examRepository.GetAllExams(StoreProcedures.uspExamList);
 
-                if(exams is not null)
+                if (exams is not null)
                 {
                     response.IsSuccess = true;
                     response.Data = exams;
                     response.Message = GlobalMessage.MESSAGE_QUERY;
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 response.Message = ex.Message;
             }

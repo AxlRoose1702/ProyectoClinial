@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.GetAllQuery
+namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Queries.GetByIdQuery
 {
-    public class GetAllExamQuery : IRequest<BaseResponse<IEnumerable<GetAllExamResponseDto>>>
+    public class GetExamByIdQuery : IRequest<BaseResponse<GetExamByIdResponseDto>>
     {
+        public int ExamId { get; set; }
     }
 }
