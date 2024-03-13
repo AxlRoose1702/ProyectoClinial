@@ -6,6 +6,6 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Commands.ChangeState
     public class ChangeStateExamCommand : IRequest<BaseResponse<bool>>
     {
         public int ExamId { get; set; }
-        public int StateId { get; set; }
+        public int State { get; set; }
     }
 }
