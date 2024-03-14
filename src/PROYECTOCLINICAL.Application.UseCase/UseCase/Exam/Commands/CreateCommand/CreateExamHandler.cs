@@ -2,14 +2,9 @@
 using MediatR;
 using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
-using Entity = PROYECTOCLINICAL.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PROYECTOCLINICAL.Utilities.HelperExtensions;
 using PROYECTOCLINICAL.Utilities.Constants;
+using PROYECTOCLINICAL.Utilities.HelperExtensions;
+using Entity = PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Commands.CreateCommand
 {

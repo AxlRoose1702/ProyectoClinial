@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInjectionPersistence();
 builder.Services.AddInjectionApplication();
 
-var app = builder.Build(); //Al ocultar el AddAutomapper da error aqui
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

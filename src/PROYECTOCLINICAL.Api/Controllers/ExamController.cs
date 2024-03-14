@@ -4,7 +4,6 @@ using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Commands.ChangeStateComm
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Commands.CreateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Commands.DeleteCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Commands.UpdateCommand;
-using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.GetAllQuery;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Queries.GetAllQuery;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Exam.Queries.GetByIdQuery;
 
