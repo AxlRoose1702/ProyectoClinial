@@ -1,4 +1,5 @@
-﻿using PROYECTOCLINICAL.Domain.Entities;
+﻿using PROYECTOCLINICAL.Application.Interface.Interfaces;
+using PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.Interface.Interface
 {
@@ -6,5 +7,6 @@ namespace PROYECTOCLINICAL.Application.Interface.Interface
     {
         IGenericRepository<Analysis> Analysis { get; }
         IExamRepository Exam { get; }
+        IPatientRepository Patient { get; }
     }
 }
