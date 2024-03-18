@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.Command.CreateCommand;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.Command.UpdateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.GetAllQuery;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.GetByIdQuery;
 
@@ -33,6 +34,12 @@ namespace PROYECTOCLINICAL.Api.Controllers
 
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterPatient([FromBody] CreatePatientCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+        [HttpPut("Edit")]
+        public async Task<IActionResult> PatientEdit([FromBody] UpdatePatientCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);

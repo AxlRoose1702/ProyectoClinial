@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PROYECTOCLINICAL.Application.Dtos.Patient.Response;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.Command.CreateCommand;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.Command.UpdateCommand;
 using PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.UseCase.Mappings
@@ -12,6 +13,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.Mappings
             CreateMap<Patient, GetPatientByIdResponseDto>()
                 .ReverseMap();
             CreateMap<CreatePatientCommand, Patient>();
+            CreateMap<UpdatePatientCommand, Patient>();
         }
     }
 }
