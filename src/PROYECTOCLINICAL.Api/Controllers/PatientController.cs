@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.Command.ChangeStateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.Command.CreateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.Command.DeleteCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.Command.UpdateCommand;
@@ -49,6 +50,13 @@ namespace PROYECTOCLINICAL.Api.Controllers
         public async Task<IActionResult> PatientRemove(int patientId)
         {
             var response = await _mediator.Send(new DeletePatientCommand() { PatientId = patientId});
+            return Ok(response);
+        }
+
+        [HttpPut("ChangeState")]
+        public async Task<IActionResult> ChangeState([FromBody] ChangeStatePatientCommand command)
+        {
+            var response = await _mediator.Send(command);
             return Ok(response);
         }
     }
