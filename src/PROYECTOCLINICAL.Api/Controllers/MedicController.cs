@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Queries.GetAllQuery;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Queries.GetByIdQuery;
 
 namespace PROYECTOCLINICAL.Api.Controllers
 {
@@ -21,5 +21,13 @@ namespace PROYECTOCLINICAL.Api.Controllers
             var response = await _mediator.Send(new GetAllMedicQuery());
             return Ok(response);
         }
+
+        [HttpGet("{medicId:int}")]
+        public async Task<IActionResult> MedicById(int medicId)
+        {
+            var response = await _mediator.Send(new GetMedicByIdQuery() { MedicId = medicId });
+            return Ok(response);
+        }
+
     }
 }
