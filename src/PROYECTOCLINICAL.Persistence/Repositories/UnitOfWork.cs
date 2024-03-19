@@ -14,12 +14,15 @@ namespace PROYECTOCLINICAL.Persistence.Repositories
 
         public IPatientRepository Patient {get;}
 
+        public IMedicRepository Medic { get; }
+
         public UnitOfWork(IGenericRepository<Analysis> analysis, ApplicationDbContext context)
         {
             _context = context;
             Analysis = analysis;
             Exam = new ExamRepository(_context);
             Patient = new PatientRepository(_context);
+            Medic = new MedicRepository(_context);
         }
 
         public void Dispose()
