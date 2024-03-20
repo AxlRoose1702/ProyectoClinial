@@ -6,7 +6,7 @@ using PROYECTOCLINICAL.Utilities.Constants;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Queries.GetAllQuery
 {
-    public class GetAllMedicsHandler : IRequestHandler<GetAllMedicsQuery, BaseResponse<IEnumerable<GetAllMedicResponseDto>>>
+    public class GetAllMedicsHandler : IRequestHandler<GetAllMedicQuery, BaseResponse<IEnumerable<GetAllMedicResponseDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -15,7 +15,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Queries.GetAllQuer
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<BaseResponse<IEnumerable<GetAllMedicResponseDto>>> Handle(GetAllMedicsQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<IEnumerable<GetAllMedicResponseDto>>> Handle(GetAllMedicQuery request, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<IEnumerable<GetAllMedicResponseDto>>();
 
