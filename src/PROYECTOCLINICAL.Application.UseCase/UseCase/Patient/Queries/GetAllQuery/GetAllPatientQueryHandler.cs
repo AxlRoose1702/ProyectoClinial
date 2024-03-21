@@ -6,7 +6,7 @@ using PROYECTOCLINICAL.Utilities.Constants;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.GetAllQuery
 {
-    public class GetAllPatientQueryHandler : IRequestHandler<GetAllPatientQuery, BaseResponse<IEnumerable<GetAllPatientResponseDto>>>
+    public class GetAllPatientQueryHandler : IRequestHandler<GetAllPatientQuery, BasePaginationResponse<IEnumerable<GetAllPatientResponseDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -15,17 +15,21 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Patient.Queries.GetAllQue
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<BaseResponse<IEnumerable<GetAllPatientResponseDto>>> Handle(GetAllPatientQuery request, CancellationToken cancellationToken)
+        public async Task<BasePaginationResponse<IEnumerable<GetAllPatientResponseDto>>> Handle(GetAllPatientQuery request, CancellationToken cancellationToken)
         {
-            var response = new BaseResponse<IEnumerable<GetAllPatientResponseDto>>();
+            var response = new BasePaginationResponse<IEnumerable<GetAllPatientResponseDto>>();
 
             try
             {
-                var patient = await _unitOfWork.Patient.GetAllPatients(StoreProcedures.uspPatientList);
+                var count = await _unitOfWork.Patient.CountAsync(TB.Patients);
+                var patient = await _unitOfWork.Patient.GetAllPatients(StoreProcedures.uspPatientList, request);
 
                 if (patient is not null)
                 {
                     response.IsSuccess = true;
+                    response.PageNumber = request.PageNumber;
+                    response.TotalPages = (int)Math.Ceiling(count / (double)request.PageSize);
+                    response.TotalCount = count;
                     response.Data = patient;
                     response.Message = GlobalMessage.MESSAGE_QUERY;
                 }

@@ -6,7 +6,7 @@ using PROYECTOCLINICAL.Utilities.Constants;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Queries.GetAllQuery
 {
-    public class GetAllMedicsHandler : IRequestHandler<GetAllMedicQuery, BaseResponse<IEnumerable<GetAllMedicResponseDto>>>
+    public class GetAllMedicsHandler : IRequestHandler<GetAllMedicQuery, BasePaginationResponse<IEnumerable<GetAllMedicResponseDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -15,16 +15,21 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Queries.GetAllQuer
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<BaseResponse<IEnumerable<GetAllMedicResponseDto>>> Handle(GetAllMedicQuery request, CancellationToken cancellationToken)
+        public async Task<BasePaginationResponse<IEnumerable<GetAllMedicResponseDto>>> Handle(GetAllMedicQuery request, CancellationToken cancellationToken)
         {
-            var response = new BaseResponse<IEnumerable<GetAllMedicResponseDto>>();
+            var response = new BasePaginationResponse<IEnumerable<GetAllMedicResponseDto>>();
 
             try
             {
-                var medics = await _unitOfWork.Medic.GetAllMedic(StoreProcedures.uspMedicList);
+                var count = await _unitOfWork.Medic.CountAsync(TB.Medics);
+                var medics = await _unitOfWork.Medic.GetAllMedic(StoreProcedures.uspMedicList, request);
+
                 if(medics is not null)
                 {
                     response.IsSuccess = true;
+                    response.PageNumber = request.PageNumber;
+                    response.TotalPages = (int)Math.Ceiling(count / (double)request.PageSize);
+                    response.TotalCount = count;
                     response.Data = medics;
                     response.Message = GlobalMessage.MESSAGE_QUERY;
                 }
