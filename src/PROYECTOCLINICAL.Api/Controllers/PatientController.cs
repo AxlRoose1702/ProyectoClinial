@@ -21,9 +21,9 @@ namespace PROYECTOCLINICAL.Api.Controllers
         }
 
         [HttpGet("ListPatient")]
-        public async Task<IActionResult> ListPatient()
+        public async Task<IActionResult> ListPatient([FromQuery] GetAllPatientQuery query)
         {
-            var response = await _mediator.Send( new GetAllPatientQuery() );
+            var response = await _mediator.Send(query);
             return Ok(response);
         }
 

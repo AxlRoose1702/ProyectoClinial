@@ -20,9 +20,9 @@ namespace PROYECTOCLINICAL.Api.Controllers
             _mediator = mediator;
         }
         [HttpGet("ListMedics")]
-        public async Task<IActionResult> ListMedics()
+        public async Task<IActionResult> ListMedics([FromQuery] GetAllMedicQuery query)
         {
-            var response = await _mediator.Send(new GetAllMedicQuery());
+            var response = await _mediator.Send(query);
             return Ok(response);
         }
 
