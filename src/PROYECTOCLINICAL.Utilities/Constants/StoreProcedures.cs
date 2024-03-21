@@ -40,6 +40,8 @@ namespace PROYECTOCLINICAL.Utilities.Constants
         public const string uspMedicById = "uspMedicById";
         public const string uspMedicRegister = "uspMedicRegister";
         public const string uspMedicEdit = "uspMedicEdit";
+        public const string uspMedicRemove = "uspMedicRemove";
+        public const string uspMedicChangeState = "uspMedicChangeState";
         #endregion
 
     }

@@ -7,7 +7,7 @@ using PROYECTOCLINICAL.Utilities.Constants;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Queries.GetByIdQuery
 {
-    public class GetMedicByIdHandler : IRequestHandler<GetMedicByIdQuery, BaseResponse<GetMedicByIdResponseDto>
+    public class GetMedicByIdHandler : IRequestHandler<GetMedicByIdQuery, BaseResponse<GetMedicByIdResponseDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

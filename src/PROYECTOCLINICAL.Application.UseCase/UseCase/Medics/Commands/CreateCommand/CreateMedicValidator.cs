@@ -33,6 +33,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Commands.CreateCom
         {
             return int.TryParse(input, out _);
         }
-    }
+
     }
 }
+

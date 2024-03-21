@@ -21,7 +21,7 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Queries.GetAllQuer
 
             try
             {
-                var medics = await _unitOfWork.Medic.GetAllMedics(StoreProcedures.uspMedicList);
+                var medics = await _unitOfWork.Medic.GetAllMedic(StoreProcedures.uspMedicList);
                 if(medics is not null)
                 {
                     response.IsSuccess = true;

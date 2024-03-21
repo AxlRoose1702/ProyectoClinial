@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using PROYECTOCLINICAL.Application.Dtos.Medic.Response;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Commands.ChangeStateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Commands.CreateCommand;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Commands.DeleteCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.Medics.Commands.UpdateCommand;
 using PROYECTOCLINICAL.Domain.Entities;
 
@@ -14,6 +16,8 @@ namespace PROYECTOCLINICAL.Application.UseCase.Mappings
                 .ReverseMap();
             CreateMap<CreateMedicCommand, Medic>();
             CreateMap<UpdateMedicCommand, Medic>();
+            CreateMap<DeleteMedicCommand, Medic>();
+            CreateMap<ChangeStateMedicCommand, Medic>();
         }
     }
 }

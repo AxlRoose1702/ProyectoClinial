@@ -11,6 +11,6 @@ namespace PROYECTOCLINICAL.Application.Interface.Interfaces
 {
     public interface IMedicRepository : IGenericRepository<Medic>
     {
-        Task<IEnumerable<GetAllMedicResponseDto>> GetAllMedics(string storeProcedure);
+        Task<IEnumerable<GetAllMedicResponseDto>> GetAllMedic(string storeProcedure);
     }
 }
