@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.GetAllQuery;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.GetByIdQuery;
 
 namespace PROYECTOCLINICAL.Api.Controllers
 {
@@ -21,5 +22,13 @@ namespace PROYECTOCLINICAL.Api.Controllers
             var response = await _mediator.Send(query);
             return Ok(response);
         }
+
+        [HttpGet("{takeExamId:int}")]
+        public async Task<IActionResult> takeExamById(int takeExamId)
+        {
+            var response = await _mediator.Send(new GetTakeExamByIdQuery() { TakeExamId = takeExamId});
+            return Ok(response);
+        }
+
     }
 }
