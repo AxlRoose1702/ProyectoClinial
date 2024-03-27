@@ -4,7 +4,7 @@ using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 using PROYECTOCLINICAL.Domain.Entities;
 using PROYECTOCLINICAL.Utilities.Constants;
-using Entity = PROYECTOCLINICAL.Domain.Entities
+using Entity = PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.Command.CreateCommand
 {

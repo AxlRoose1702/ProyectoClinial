@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.GetByIdQuery
 {
-    public class GetTakeExamByIdHandler : IRequestHandler<GetTakeExamByIdQuery, BaseResponse<GetTakeExamByIdResponseDto>>
+    public class GetTakeExamByIdHandler : IRequestHandler<GetTakeExamByIdQuery, BasePaginationResponse<IEnumerable<GetTakeExamByIdResponseDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -22,16 +22,16 @@ namespace PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.GetByIdQ
             _mapper = mapper;
         }
 
-        public async Task<BaseResponse<GetTakeExamByIdResponseDto>> Handle(GetTakeExamByIdQuery request, CancellationToken cancellationToken)
+        public async Task<BasePaginationResponse<IEnumerable<GetTakeExamByIdResponseDto>>> Handle(GetTakeExamByIdQuery request, CancellationToken cancellationToken)
         {
-            var response = new BaseResponse<GetTakeExamByIdResponseDto>();
+            var response = new BasePaginationResponse<IEnumerable<GetTakeExamByIdResponseDto>>();
 
             try
             {
                 var takeExams = await _unitOfWork.TakeExam.GetTakeExamById(request.TakeExamId);
                 takeExams.TakeExamDetail = await _unitOfWork.TakeExam.GetTakeExamDetailByTakeExamId(request.TakeExamId);
                 response.IsSuccess = true;
-                response.Data = _mapper.Map<GetTakeExamByIdResponseDto>(takeExams);
+                response.Data = _mapper.Map <IEnumerable<GetTakeExamByIdResponseDto>>(takeExams);
                 response.Message = GlobalMessage.MESSAGE_QUERY;
             }
             catch (Exception ex)
