@@ -9,5 +9,6 @@ namespace PROYECTOCLINICAL.Application.Interface.Interface
         IExamRepository Exam { get; }
         IPatientRepository Patient { get; }
         IMedicRepository Medic { get; }
+        ITakeExamRepository TakeExam { get; }
     }
 }

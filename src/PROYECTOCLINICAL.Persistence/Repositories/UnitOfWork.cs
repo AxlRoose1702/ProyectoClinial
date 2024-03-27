@@ -16,6 +16,8 @@ namespace PROYECTOCLINICAL.Persistence.Repositories
 
         public IMedicRepository Medic { get; }
 
+        public ITakeExamRepository TakeExam { get; }
+
         public UnitOfWork(IGenericRepository<Analysis> analysis, ApplicationDbContext context)
         {
             _context = context;
@@ -23,6 +25,7 @@ namespace PROYECTOCLINICAL.Persistence.Repositories
             Exam = new ExamRepository(_context);
             Patient = new PatientRepository(_context);
             Medic = new MedicRepository(_context);
+            TakeExam = new TakeExamRepository(_context);
         }
 
         public void Dispose()
