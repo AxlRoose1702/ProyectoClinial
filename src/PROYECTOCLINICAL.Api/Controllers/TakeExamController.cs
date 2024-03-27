@@ -6,11 +6,11 @@ namespace PROYECTOCLINICAL.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TakeExam : ControllerBase
+    public class TakeExamController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public TakeExam(IMediator mediator)
+        public TakeExamController(IMediator mediator)
         {
             _mediator = mediator;
         }
