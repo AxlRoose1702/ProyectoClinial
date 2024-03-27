@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PROYECTOCLINICAL.Application.Dtos.TakeExam.Response;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.Command.CreateCommand;
 using PROYECTOCLINICAL.Domain.Entities;
 
 namespace PROYECTOCLINICAL.Application.UseCase.Mappings
@@ -12,6 +13,8 @@ namespace PROYECTOCLINICAL.Application.UseCase.Mappings
                 .ReverseMap();
             CreateMap<GetTakeExamDetailByTakeExamIdResponseDto, TakeExam>()
                 .ReverseMap();
+            CreateMap<CreateTakeExamCommand, TakeExam>();
+            CreateMap<CreateTakeExamDetailCommand, TakeExamDetail>();
         }
     }
 }

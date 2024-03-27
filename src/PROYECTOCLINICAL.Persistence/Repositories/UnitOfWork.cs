@@ -2,6 +2,7 @@
 using PROYECTOCLINICAL.Application.Interface.Interfaces;
 using PROYECTOCLINICAL.Domain.Entities;
 using PROYECTOCLINICAL.Persistence.Context;
+using System.Transactions;
 
 namespace PROYECTOCLINICAL.Persistence.Repositories
 {
@@ -18,6 +19,7 @@ namespace PROYECTOCLINICAL.Persistence.Repositories
 
         public ITakeExamRepository TakeExam { get; }
 
+
         public UnitOfWork(IGenericRepository<Analysis> analysis, ApplicationDbContext context)
         {
             _context = context;
@@ -31,6 +33,11 @@ namespace PROYECTOCLINICAL.Persistence.Repositories
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+        public TransactionScope BeginTransaction()
+        {
+            var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+            return transaction;
         }
     }
 }

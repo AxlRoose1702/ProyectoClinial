@@ -1,5 +1,6 @@
 ﻿using PROYECTOCLINICAL.Application.Interface.Interfaces;
 using PROYECTOCLINICAL.Domain.Entities;
+using System.Transactions;
 
 namespace PROYECTOCLINICAL.Application.Interface.Interface
 {
@@ -10,5 +11,6 @@ namespace PROYECTOCLINICAL.Application.Interface.Interface
         IPatientRepository Patient { get; }
         IMedicRepository Medic { get; }
         ITakeExamRepository TakeExam { get; }
+        TransactionScope BeginTransaction();
     }
 }
