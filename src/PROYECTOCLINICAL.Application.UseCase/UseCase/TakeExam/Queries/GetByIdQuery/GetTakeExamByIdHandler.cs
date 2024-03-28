@@ -4,11 +4,6 @@ using PROYECTOCLINICAL.Application.Dtos.TakeExam.Response;
 using PROYECTOCLINICAL.Application.Interface.Interface;
 using PROYECTOCLINICAL.Application.UseCase.Commons.Bases;
 using PROYECTOCLINICAL.Utilities.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.GetByIdQuery
 {
