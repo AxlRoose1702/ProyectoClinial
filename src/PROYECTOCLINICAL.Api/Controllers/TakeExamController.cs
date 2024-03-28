@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.Command.ChangeStateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.Command.CreateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.Command.UpdateCommand;
 using PROYECTOCLINICAL.Application.UseCase.UseCase.TakeExam.Queries.GetAllQuery;
@@ -37,8 +38,16 @@ namespace PROYECTOCLINICAL.Api.Controllers
             var response = await _mediator.Send(command);
             return Ok(response);
         }
+
         [HttpPut("Edit")]
         public async Task<IActionResult> EditTakeExam([FromQuery] UpdateTakeExamCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPut("ChangeState")]
+        public async Task<IActionResult> ChangeState([FromQuery] ChangeStateCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);

@@ -13,5 +13,6 @@ namespace PROYECTOCLINICAL.Application.Interface.Interfaces
         Task RegisterTakeExamDetail(TakeExamDetail takeExamDetail);
         Task EditTakeExam(TakeExam takeExam);
         Task EditTakeExamdetail(TakeExamDetail takeExamDetail);
+        Task<bool> ChangeStateTakeExam(TakeExam takeExam);
     }
 }

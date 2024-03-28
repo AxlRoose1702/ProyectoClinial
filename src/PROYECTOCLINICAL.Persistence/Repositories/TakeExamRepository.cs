@@ -104,5 +104,18 @@ namespace PROYECTOCLINICAL.Persistence.Repositories
             await connection.ExecuteAsync(sql, param: parameters);
 
         }
+
+        public async Task<bool> ChangeStateTakeExam(TakeExam takeExam)
+        { 
+            var connection = _context.CreateConnection;
+            var sql = @"UPDATE takeExam SET State = @State WHERE TakeExamId = @TakeExamId";
+            var parameters = new DynamicParameters();
+            parameters.Add("State", takeExam.State);
+            parameters.Add("TakeExamId", takeExam.TakeExamId);
+
+            var recordsAffected = await connection.ExecuteAsync(sql, param: parameters);
+            return recordsAffected > 0;
+
+        }
     }
 }
